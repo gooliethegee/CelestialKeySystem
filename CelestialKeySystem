@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Key Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+    a {
+      display: inline-block;
+      background: #ef4444;
+      color: white;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    a:hover { background: #dc2626; }
+    button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 18px;
+      background: #22c55e;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: none;
+    }
+    #keyBox {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #38bdf8;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Subscribe First 🎥</h1>
+  <p>Click the button below and subscribe to our channel!</p>
+
+  <a href="https://www.youtube.com/@OfficialXGAH" target="_blank" id="ytLink">
+    Go to YouTube
+  </a>
+
+  <br>
+  <button id="generateBtn">Generate Key 🗝️</button>
+
+  <div id="keyBox"></div>
+
+  <script>
+    let ytClicked = false;
+    let timerDone = false;
+
+    // When user clicks the YouTube link
+    document.getElementById("ytLink").addEventListener("click", () => {
+      ytClicked = true;
+
+      // Start a 5 second timer
+      setTimeout(() => {
+        timerDone = true;
+        if (ytClicked && timerDone) {
+          document.getElementById("generateBtn").style.display = "inline-block";
+        }
+      }, 5000);
+    });
+
+    // Generate random key with 25+ characters after FREE_
+    function generateKey() {
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      let randomPart = "";
+      for (let i = 0; i < 25; i++) {
+        randomPart += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return "FREE_" + randomPart;
+    }
+
+    // Button click
+    document.getElementById("generateBtn").addEventListener("click", () => {
+      const newKey = generateKey();
+      document.getElementById("keyBox").innerText = "Your Key: " + newKey;
+    });
+  </script>
+
+</body>
+</html>
